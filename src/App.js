@@ -1,10 +1,15 @@
 import './App.css'
-import { Box } from './components/box/Box';
+import { Board } from './components/Board';
 
 function App() {
+  //list of X's named 'board
+  const board = ["X", "X", "X", "X", "X", "X", "X", "X", "X"]
+
+
   return (
     <div className="App">
-      <Box />
+      <Board board={board} />
+      
     </div>
   );
 }
