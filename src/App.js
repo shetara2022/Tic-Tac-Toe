@@ -12,14 +12,17 @@ function App() {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2,4,6]
-   ]
+    [2, 4, 6]
+  ]
 
   //create list as state instead of static list. The default value is an Array with 9 elements
   const [board, setBoard] = useState(Array(9).fill(null));
 
   //set the player
   const [xPlayer, setXPlayer] = useState(true)
+
+  //keep track of score
+  const [scores, setScores] = useState({ xScore: 0, oScore: 0 })
 
 
   //function to handle when box is clicked 
@@ -32,9 +35,24 @@ function App() {
       }
     })
 
-    checkWinner(updatedBoard)
+    //check the winner
+    const winner = checkWinner(updatedBoard);
+    if (winner) {
+      if (winner === "O") {
+        let { oScore } = scores;
+        oScore += 1   //increment O score by 1
+        setScores({ ...scores, oScore })
 
-    //update board variable
+      } else {
+        let { xScore } = scores;
+        xScore += 1   //increment X score by 1
+        setScores({ ...scores, xScore })
+      }
+    }
+    console.log(scores)
+
+
+    //update the board variable
     setBoard(updatedBoard);
 
     setXPlayer(!xPlayer);
@@ -42,7 +60,7 @@ function App() {
 
   //function to check the board for a win
   const checkWinner = (board) => {
-    for (let i = 0; i < WIN.length; i++){
+    for (let i = 0; i < WIN.length; i++) {
       const [x, y, z] = WIN[i];
 
       //check indices to see if the values present are the same 
