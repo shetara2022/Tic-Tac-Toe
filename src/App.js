@@ -33,6 +33,7 @@ function App() {
     })
 
     checkWinner(updatedBoard)
+
     //update board variable
     setBoard(updatedBoard);
 
@@ -46,6 +47,7 @@ function App() {
 
       //check indices to see if the values present are the same 
       if (board[x] && board[x] === board[y] && board[y] === board[z]) {
+        // console.log(board[x])
         return board[x];
       }
 
